@@ -1,10 +1,8 @@
-
-# Portfolio 
+# Portfolio
 
 Portfólio interativo em formato de terminal, com visual inspirado em Matrix, desenvolvido em React, TypeScript e Vite. Navegue digitando comandos, explore projetos, habilidades, contatos e alterne entre português e inglês.
 
 ---
-
 
 ---
 
@@ -39,15 +37,15 @@ Portfólio interativo em formato de terminal, com visual inspirado em Matrix, de
 
 ## 💻 Comandos disponíveis
 
-| Comando         | Descrição                                 |
-|-----------------|-------------------------------------------|
-| help            | Lista todos os comandos disponíveis        |
-| about           | Exibe informações sobre mim                |
-| projects        | Mostra projetos em destaque                |
-| skills          | Lista principais habilidades               |
-| contact         | Exibe links de contato                     |
-| lang [en\|pt]   | Altera o idioma                            |
-| clear           | Limpa o terminal                           |
+| Comando       | Descrição                           |
+| ------------- | ----------------------------------- |
+| help          | Lista todos os comandos disponíveis |
+| about         | Exibe informações sobre mim         |
+| projects      | Mostra projetos em destaque         |
+| skills        | Lista principais habilidades        |
+| contact       | Exibe links de contato              |
+| lang [en\|pt] | Altera o idioma                     |
+| clear         | Limpa o terminal                    |
 
 ---
 
@@ -56,7 +54,6 @@ Portfólio interativo em formato de terminal, com visual inspirado em Matrix, de
 Digite `help` para ver todos os comandos. Use `projects` para listar projetos, `about` para saber mais sobre o autor, e `lang pt` ou `lang en` para trocar o idioma.
 
 ---
-
 
 ## 🏗️ Arquitetura e Estrutura
 
