@@ -13,7 +13,6 @@ export default function Terminal({lang, setLang}: TerminalProps) {
     const inputRef = useRef<HTMLInputElement>(null);
     const endRef = useRef<HTMLDivElement>(null);
     const cmds = commands(lang, setLang);
-    const [showRain, setShowRain] = useState(false);
 
 
     useEffect(() => {
@@ -43,8 +42,6 @@ export default function Terminal({lang, setLang}: TerminalProps) {
         clear ? []: [...h, `gianluca@portfolio:~$ ${input}`, output]);
         setInput("");
         
-        setShowRain(true);
-        setTimeout(() => setShowRain(false), 1200);
     }
 
     
