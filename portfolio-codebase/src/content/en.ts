@@ -1,7 +1,13 @@
 export const heroTexts = {
   name: "Gianluca Lourenço Alves",
   title: "Full Stack Developer",
-  intro: "Hi, I'm Gianluca Lourenço Alves — a Full Stack Developer seeking an internship and passionate about turning ideas into functional products, with attention to performance, UI, and code quality. Here you navigate as in a terminal: type help to see the commands and use projects to go straight to what I've already built..",
+  intro:
+    "Hi, I'm Gianluca Lourenço Alves — a Full Stack Developer seeking an internship and passionate about turning ideas into functional products, with attention to performance, UI, and code quality. Here you navigate as in a terminal: type help to see the commands and use projects to go straight to what I've already built..",
+  welcomeSmall: `
++------------+
+|  WELCOME   |
++------------+
+  `,
   welcome: `
   ░██       ░██            ░██                                                  
 ░██       ░██            ░██                                                  
@@ -13,7 +19,7 @@ export const heroTexts = {
                                                                               
                                                                               
                                                                               
-  `
+  `,
 };
 
 export const about = {
@@ -32,16 +38,23 @@ export const projects = [
     highlights: [
       "Implemented authentication",
       "Responsive design",
-      "Deployed on Vercel"
+      "Deployed on Vercel",
     ],
     live: "https://project1.vercel.app",
-    repo: "https://github.com/GianlucaAlves/project1"
+    repo: "https://github.com/GianlucaAlves/project1",
   },
-
 ];
 
 export const skills = [
-  "React", "TypeScript", "JavaScript", "Tailwind CSS", "Node.js", "Git", "SCRUM", "Python", "SQL"
+  "React",
+  "TypeScript",
+  "JavaScript",
+  "Tailwind CSS",
+  "Node.js",
+  "Git",
+  "SCRUM",
+  "Python",
+  "SQL",
 ];
 
 export const contact = {
