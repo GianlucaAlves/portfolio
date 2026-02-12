@@ -44,11 +44,11 @@ export default function Terminal({ lang, setLang }: TerminalProps) {
 
   return (
     <div className="w-full max-w-2xl mx-auto bg-black bg-opacity-80 rounded-lg p-2 sm:p-4 mt-6 sm:mt-8 font-mono text-green-300 shadow-lg">
-      <div className="min-h-[140px] sm:min-h-[220px] w-full">
+      <div className="min-h-35 sm:min-h-55 w-full">
         {history.map((line, i) => (
           <div
             key={i}
-            className="mb-3 sm:mb-5 fade-in matrix-glow break-words max-w-full w-full"
+            className="mb-3 sm:mb-5 fade-in matrix-glow wrap-break-word max-w-full w-full"
           >
             {line}
           </div>
@@ -62,7 +62,7 @@ export default function Terminal({ lang, setLang }: TerminalProps) {
           </span>
           <input
             ref={inputRef}
-            className="bg-transparent outline-none flex-1 text-green-200 min-w-[140px] max-w-full w-full sm:w-auto"
+            className="bg-transparent outline-none flex-1 text-green-200 min-w-35 max-w-full w-full sm:w-auto"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             autoComplete="off"

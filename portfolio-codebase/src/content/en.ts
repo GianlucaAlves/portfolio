@@ -86,7 +86,7 @@ export const projects = [
       "Utility-First Styling with Tailwind — Applied Tailwind CSS utility framework to create a responsive and modern interface without custom CSS, using icons from the Lucide React library",
       "SPA Routing — Integrated React Router DOM v6 for client-side navigation between task list and detail page, creating a smooth Single Page Application experience",
     ],
-    live: "https://gerenciador-de-tarefas-com-react-e-tailwind.vercel.app",
+    live: "https://gerenciador-de-tarefas-com-react-e.vercel.app",
     repo: "https://github.com/GianlucaAlves/Gerenciador-de-tarefas-com-React-e-Tailwind",
   },
   {
