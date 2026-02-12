@@ -20,7 +20,7 @@ export default function ProjectCard({ project }: { project: Project }) {
       "
     >
       <div className="flex flex-wrap items-center gap-2 mb-2 w-full">
-        <span className="text-green-400 font-mono text-base sm:text-lg font-bold break-words max-w-full">
+        <span className="text-green-400 font-mono text-base sm:text-lg font-bold wrap-break-word max-w-full">
           {project.title}
         </span>
         <span className="ml-auto flex gap-2 flex-wrap">
@@ -42,7 +42,7 @@ export default function ProjectCard({ project }: { project: Project }) {
           </a>
         </span>
       </div>
-      <div className="text-green-200 font-mono mb-2 text-sm sm:text-base break-words max-w-full">
+      <div className="text-green-200 font-mono mb-2 text-sm sm:text-base wrap-break-word max-w-full">
         {project.description}
       </div>
       <div className="flex flex-wrap gap-2 mb-2 w-full">

@@ -9,18 +9,44 @@ export const commands = (lang: "en" | "pt", setLang: (lang: "en" | "pt") => void
   {
     name: "help",
     description: "List all available commands",
-    run: () => ({
+    run: () => {
+      const help = texts(lang).help;
+      const ascii = lang === "en"
+      ? `
+██╗  ██╗███████╗██╗     ██████╗ 
+██║  ██║██╔════╝██║     ██╔══██╗
+███████║█████╗  ██║     ██████╔╝
+██╔══██║██╔══╝  ██║     ██╔═══╝ 
+██║  ██║███████╗███████╗██║     
+╚═╝  ╚═╝╚══════╝╚══════╝╚═╝     
+                                
+`
+      : `
+ █████╗      ██╗██╗   ██╗██████╗  █████╗ 
+██╔══██╗     ██║██║   ██║██╔══██╗██╔══██╗
+███████║     ██║██║   ██║██║  ██║███████║
+██╔══██║██   ██║██║   ██║██║  ██║██╔══██║
+██║  ██║╚█████╔╝╚██████╔╝██████╔╝██║  ██║
+╚═╝  ╚═╝ ╚════╝  ╚═════╝ ╚═════╝ ╚═╝  ╚═╝
+                                         
+`;
+      return{
       output: (
-        <ul>
-          <li>help — List all available commands</li>
-          <li>clear — Clear the terminal</li>
-          <li>about — Show about info</li>
-          <li>projects — Show featured projects</li>
-          <li>skills — Show main skills</li>
-          <li>contact — Show contact links</li>
-        </ul>
+        <div>
+          <pre className="text-green-400 font-mono text-[8px] sm:text-xs md:text-sm lg:text-base leading-none mb-4 mt-2 whitespace-pre text-center max-w-full scale-[0.8] sm:scale-100 origin-top">{ascii}</pre>
+          <ul>
+            <li>{help.help}</li>
+            <li>{help.clear}</li>
+            <li>{help.about}</li>
+            <li>{help.projects}</li>
+            <li>{help.skills}</li>
+            <li>{help.contact}</li>
+            <li>{help.lang}</li>
+          </ul>
+        </div>
       ),
-    }),
+      };
+    },
   },
   {
     name: "clear",
@@ -45,15 +71,37 @@ export const commands = (lang: "en" | "pt", setLang: (lang: "en" | "pt") => void
     name: "about",
     description: "Show about info",
     run: () => {
-      const about = commands.name === "en" ? texts("en").about : texts("pt").about;
+        const about = texts(lang).about;
+         const ascii = lang === "en"
+      ? `
+ █████╗ ██████╗  ██████╗ ██╗   ██╗████████╗
+██╔══██╗██╔══██╗██╔═══██╗██║   ██║╚══██╔══╝
+███████║██████╔╝██║   ██║██║   ██║   ██║   
+██╔══██║██╔══██╗██║   ██║██║   ██║   ██║   
+██║  ██║██████╔╝╚██████╔╝╚██████╔╝   ██║   
+╚═╝  ╚═╝╚═════╝  ╚═════╝  ╚═════╝    ╚═╝   
+                                           
+`
+      : `
+███████╗ ██████╗ ██████╗ ██████╗ ███████╗
+██╔════╝██╔═══██╗██╔══██╗██╔══██╗██╔════╝
+███████╗██║   ██║██████╔╝██████╔╝█████╗  
+╚════██║██║   ██║██╔══██╗██╔══██╗██╔══╝  
+███████║╚██████╔╝██████╔╝██║  ██║███████╗
+╚══════╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝
+                                         
+`;
       return {
         output: (
-          <div>
-            <div><b>Bio:</b> {about.bio}</div>
-            <div><b>Location:</b> {about.location}</div>
-            <div><b>College:</b> {about.college}</div>
-            <div><b>Goal:</b> {about.goal}</div>
-          </div>
+          <>
+            <pre className="text-green-400 font-mono text-[8px] sm:text-xs md:text-sm lg:text-base leading-none mb-4 mt-2 whitespace-pre text-center max-w-full scale-[0.8] sm:scale-100 origin-top">{ascii}</pre>
+            <div>
+              <div><b>Bio:</b> {about.bio}</div>
+              <div><b>Location:</b> {about.location}</div>
+              <div><b>College:</b> {about.college}</div>
+              <div><b>Goal:</b> {about.goal}</div>
+            </div>
+          </>
         ),
       };
     },
@@ -62,11 +110,32 @@ export const commands = (lang: "en" | "pt", setLang: (lang: "en" | "pt") => void
   name: "projects",
   description: "Show featured projects",
   run: () => {
-    const projects = commands.name === "en" ? texts("en").projects : texts("pt").projects;
+    const projects = texts(lang).projects;
+    const ascii = lang === "en"
+      ? `
+██████╗ ██████╗  ██████╗      ██╗███████╗ ██████╗████████╗███████╗
+██╔══██╗██╔══██╗██╔═══██╗     ██║██╔════╝██╔════╝╚══██╔══╝██╔════╝
+██████╔╝██████╔╝██║   ██║     ██║█████╗  ██║        ██║   ███████╗
+██╔═══╝ ██╔══██╗██║   ██║██   ██║██╔══╝  ██║        ██║   ╚════██║
+██║     ██║  ██║╚██████╔╝╚█████╔╝███████╗╚██████╗   ██║   ███████║
+╚═╝     ╚═╝  ╚═╝ ╚═════╝  ╚════╝ ╚══════╝ ╚═════╝   ╚═╝   ╚══════╝
+                                                                                                                              
+`
+      : `
+██████╗ ██████╗  ██████╗      ██╗███████╗████████╗ ██████╗ ███████╗
+██╔══██╗██╔══██╗██╔═══██╗     ██║██╔════╝╚══██╔══╝██╔═══██╗██╔════╝
+██████╔╝██████╔╝██║   ██║     ██║█████╗     ██║   ██║   ██║███████╗
+██╔═══╝ ██╔══██╗██║   ██║██   ██║██╔══╝     ██║   ██║   ██║╚════██║
+██║     ██║  ██║╚██████╔╝╚█████╔╝███████╗   ██║   ╚██████╔╝███████║
+╚═╝     ╚═╝  ╚═╝ ╚═════╝  ╚════╝ ╚══════╝   ╚═╝    ╚═════╝ ╚══════╝
+                                                                   
+                                                                  
+`;
     return {
       output: (
         <div>
-          {projects.slice(0, 3).map((project, idx) => (
+           <pre className="text-green-400 font-mono text-[8px] sm:text-xs md:text-sm lg:text-base leading-none mb-4 mt-2 whitespace-pre text-center max-w-full scale-[0.8] sm:scale-100 origin-top">{ascii}</pre>
+          {projects.slice(0, projects.length).map((project, idx) => (
             <ProjectCard key={idx} project={project} />
           ))}
         </div>
@@ -78,9 +147,30 @@ export const commands = (lang: "en" | "pt", setLang: (lang: "en" | "pt") => void
   name: "skills",
   description: "Show main skills",
   run: () => {
-    const skills = lang === "en" ? texts("en").skills : texts("pt").skills;
+    const skills = texts(lang).skills;
+    const ascii = lang === "en"
+          ? `
+███████╗██╗  ██╗██╗██╗     ██╗     ███████╗
+██╔════╝██║ ██╔╝██║██║     ██║     ██╔════╝
+███████╗█████╔╝ ██║██║     ██║     ███████╗
+╚════██║██╔═██╗ ██║██║     ██║     ╚════██║
+███████║██║  ██╗██║███████╗███████╗███████║
+╚══════╝╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚══════╝
+                                           
+`
+      : `
+██╗  ██╗ █████╗ ██████╗ ██╗██╗     ██╗██████╗  █████╗ ██████╗ ███████╗███████╗
+██║  ██║██╔══██╗██╔══██╗██║██║     ██║██╔══██╗██╔══██╗██╔══██╗██╔════╝██╔════╝
+███████║███████║██████╔╝██║██║     ██║██║  ██║███████║██║  ██║█████╗  ███████╗
+██╔══██║██╔══██║██╔══██╗██║██║     ██║██║  ██║██╔══██║██║  ██║██╔══╝  ╚════██║
+██║  ██║██║  ██║██████╔╝██║███████╗██║██████╔╝██║  ██║██████╔╝███████╗███████║
+╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ ╚═╝╚══════╝╚═╝╚═════╝ ╚═╝  ╚═╝╚═════╝ ╚══════╝╚══════╝
+                                                                              
+`;
     return {
       output: (
+        <div>
+        <pre className="text-green-400 font-mono text-[8px] sm:text-xs md:text-sm lg:text-base leading-none mb-4 mt-2 whitespace-pre text-center max-w-full scale-[0.8] sm:scale-100 origin-top">{ascii}</pre>
         <div className="flex flex-wrap gap-2">
           {skills.map((skill, idx) => (
             <span
@@ -91,6 +181,7 @@ export const commands = (lang: "en" | "pt", setLang: (lang: "en" | "pt") => void
             </span>
           ))}
         </div>
+        </div>
       ),
     };
   },
@@ -99,9 +190,30 @@ export const commands = (lang: "en" | "pt", setLang: (lang: "en" | "pt") => void
   name: "contact",
   description: "Show contact links",
   run: () => {
-    const contacts = texts("en").contact;
+    const contacts = texts(lang).contact;
+    const ascii = lang === "en"
+      ? `
+ ██████╗ ██████╗ ███╗   ██╗████████╗ █████╗  ██████╗████████╗
+██╔════╝██╔═══██╗████╗  ██║╚══██╔══╝██╔══██╗██╔════╝╚══██╔══╝
+██║     ██║   ██║██╔██╗ ██║   ██║   ███████║██║        ██║   
+██║     ██║   ██║██║╚██╗██║   ██║   ██╔══██║██║        ██║   
+╚██████╗╚██████╔╝██║ ╚████║   ██║   ██║  ██║╚██████╗   ██║   
+ ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝   ╚═╝   
+                                                             
+`
+      : `
+ ██████╗ ██████╗ ███╗   ██╗████████╗ █████╗ ████████╗ ██████╗ 
+██╔════╝██╔═══██╗████╗  ██║╚══██╔══╝██╔══██╗╚══██╔══╝██╔═══██╗
+██║     ██║   ██║██╔██╗ ██║   ██║   ███████║   ██║   ██║   ██║
+██║     ██║   ██║██║╚██╗██║   ██║   ██╔══██║   ██║   ██║   ██║
+╚██████╗╚██████╔╝██║ ╚████║   ██║   ██║  ██║   ██║   ╚██████╔╝
+ ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝   ╚═╝    ╚═════╝ 
+                                                              
+`;
     return {
       output: (
+        <>
+        <pre className="text-green-400 font-mono text-[8px] sm:text-xs md:text-sm lg:text-base leading-none mb-4 mt-2 whitespace-pre text-center max-w-full scale-[0.8] sm:scale-100 origin-top">{ascii}</pre>
         <div className="flex flex-col gap-2">
           <a
             href={contacts.linkedin}
@@ -126,6 +238,7 @@ export const commands = (lang: "en" | "pt", setLang: (lang: "en" | "pt") => void
             Email
           </a>
         </div>
+        </>
       ),
     };
   },
