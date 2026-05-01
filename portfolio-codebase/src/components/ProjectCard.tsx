@@ -1,3 +1,5 @@
+import BrowserFrame from "./BrowserFrame";
+
 type Project = {
   title: string;
   description: string;
@@ -5,6 +7,7 @@ type Project = {
   highlights: string[];
   live: string;
   repo: string;
+  screenshots?: string[];
 };
 
 export default function ProjectCard({ project }: { project: Project }) {
@@ -20,7 +23,7 @@ export default function ProjectCard({ project }: { project: Project }) {
       "
     >
       <div className="flex flex-wrap items-center gap-2 mb-2 w-full">
-        <span className="text-green-400 font-mono text-base sm:text-lg font-bold wrap-break-word max-w-full">
+        <span className="text-green-400 font-mono text-sm sm:text-base font-bold wrap-break-word max-w-full">
           {project.title}
         </span>
         <span className="ml-auto flex gap-2 flex-wrap">
@@ -42,9 +45,14 @@ export default function ProjectCard({ project }: { project: Project }) {
           </a>
         </span>
       </div>
-      <div className="text-green-200 font-mono mb-2 text-sm sm:text-base wrap-break-word max-w-full">
+      <div className="text-green-200 font-mono mb-2 text-xs sm:text-sm wrap-break-word max-w-full">
         {project.description}
       </div>
+      <BrowserFrame
+        screenshots={project.screenshots ?? [""]}
+        url={project.live}
+        alt={project.title}
+      />
       <div className="flex flex-wrap gap-2 mb-2 w-full">
         {project.stack.map((tech, i) => (
           <span

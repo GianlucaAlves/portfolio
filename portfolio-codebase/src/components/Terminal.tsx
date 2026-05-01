@@ -8,23 +8,41 @@ type TerminalProps = {
 
 export default function Terminal({ lang, setLang }: TerminalProps) {
   const [history, setHistory] = useState<(string | JSX.Element)[]>([]);
+  const [phosphorIndex, setPhosphorIndex] = useState<number | null>(null);
   const [input, setInput] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   const endRef = useRef<HTMLDivElement>(null);
   const cmds = commands(lang, setLang);
 
   useEffect(() => {
-    inputRef.current?.focus();
+    inputRef.current?.focus({ preventScroll: true });
   }, []);
 
   useEffect(() => {
+    if (history.length === 0) return;
     endRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [history]);
 
+  useEffect(() => {
+    if (history.length === 0) return;
+
+    const index = history.length - 1;
+    setPhosphorIndex(index);
+
+    const timeout = window.setTimeout(() => {
+      setPhosphorIndex((current) => (current === index ? null : current));
+    }, 400);
+
+    return () => window.clearTimeout(timeout);
+  }, [history.length]);
+
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (input.trim() === "") return;
-    const [cmd, ...args] = input.trim().split(" ");
+    const normalizedInput = input.trim().replace(/\s+/g, " ");
+    if (normalizedInput === "") return;
+    const [rawCmd, ...rawArgs] = normalizedInput.split(" ");
+    const cmd = rawCmd.toLowerCase();
+    const args = rawArgs.filter(Boolean);
     const command = cmds.find((c) => c.name === cmd);
     let output: string | JSX.Element = "";
     let clear = false;
@@ -37,18 +55,20 @@ export default function Terminal({ lang, setLang }: TerminalProps) {
       output = `Command not found: ${cmd}`;
     }
     setHistory((h) =>
-      clear ? [] : [...h, `gianluca@portfolio:~$ ${input}`, output],
+      clear ? [] : [...h, `gianluca@portfolio:~$ ${normalizedInput}`, output],
     );
     setInput("");
   }
 
   return (
-    <div className="w-full max-w-2xl mx-auto bg-black bg-opacity-80 rounded-lg p-2 sm:p-4 mt-6 sm:mt-8 font-mono text-green-300 shadow-lg">
+    <div className="w-full bg-black/80 rounded-lg p-2 sm:p-3 mt-4 sm:mt-6 font-mono text-green-300 text-xs sm:text-sm shadow-lg">
       <div className="min-h-35 sm:min-h-55 w-full">
         {history.map((line, i) => (
           <div
             key={i}
-            className="mb-3 sm:mb-5 fade-in matrix-glow wrap-break-word max-w-full w-full"
+            className={`mb-3 sm:mb-5 fade-in matrix-glow wrap-break-word max-w-full w-full ${
+              phosphorIndex === i ? "phosphor-flash" : ""
+            }`}
           >
             {line}
           </div>
@@ -57,12 +77,12 @@ export default function Terminal({ lang, setLang }: TerminalProps) {
           onSubmit={handleSubmit}
           className="flex flex-wrap gap-2 items-center w-full"
         >
-          <span className="mr-2 text-green-400 font-mono prompt-pulse">
+          <span className="mr-2 text-green-400 font-mono text-xs sm:text-sm prompt-pulse">
             gianluca@portfolio:~$
           </span>
           <input
             ref={inputRef}
-            className="bg-transparent outline-none flex-1 text-green-200 min-w-35 max-w-full w-full sm:w-auto"
+            className="appearance-none bg-transparent border-0 outline-none ring-0 shadow-none flex-1 text-green-200 min-w-35 w-full sm:w-auto focus:outline-none focus:ring-0 focus:border-0"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             autoComplete="off"

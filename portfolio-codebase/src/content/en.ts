@@ -20,10 +20,12 @@ export const heroTexts = {
 };
 
 export const about = {
-  bio: "I really enjoy programming and I'm always looking for new challenges to grow as a developer. I have experience with JavaScript, React, Node.js, and I'm eager to learn more technologies and best practices in software development.",
+  bio: "Passionate about programming and obsessed with evolving. I enjoy challenges that take me out of my comfort zone and believe that growing as a developer is the result of attention to detail and a constant desire to improve.",
   location: "Jacareí-SP, Brazil",
   college: "FATEC Jacareí-SP, Software Development, 2nd semester",
-  goal: "Looking for a software development internship.",
+  role: "Software Development Intern at Ericsson",
+  goal: "Grow as a Full Stack developer and contribute to products that generate real impact.",
+  image: "../../public/profile.png",
 };
 
 export const projects = [
@@ -32,7 +34,16 @@ export const projects = [
     title: "Institutional Website for Agrirslab at INPE",
     description:
       "Complete institutional website developed in a group for the Agricultural Remote Sensing Laboratory at INPE, centralizing information about research, projects, team, and scientific publications, facilitating access for the academic community and interested public.",
-    stack: ["HTML", "CSS", "JavaScript", "PostgreSQL", "Node.js", "Express", "Git", "SCRUM"],
+    stack: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "PostgreSQL",
+      "Node.js",
+      "Express",
+      "Git",
+      "SCRUM",
+    ],
     highlights: [
       "Complete Full-Stack Architecture — Participated in the development of the application with responsive frontend (HTML/CSS/JS), backend in Node.js with Express, relational database with entity-relationship modeling, working on all layers of the project",
       "Administrative Dashboard with Authentication — Implemented a complete CRUD system with JWT authentication, allowing management of posts/news, team members, and institutional content through a secure admin panel",
@@ -40,6 +51,7 @@ export const projects = [
     ],
     live: "https://website-institucional-agrirs-lab-in.vercel.app/home.html",
     repo: "https://github.com/GianlucaAlves/Website-Institucional-AgrirsLab-INPE",
+    screenshots: ["../../public/agrirslab.png", "../../public/profile.png"],
   },
   {
     slug: "portfolio",
@@ -56,13 +68,21 @@ export const projects = [
     ],
     live: "https://portfolio-gamma-peach-gelajuwt1r.vercel.app",
     repo: "https://github.com/GianlucaAlves/portfolio",
+    screenshots: [""],
   },
   {
     slug: "agendador-horarios",
     title: "Schedule Management System",
     description:
       "Professional REST API developed with Spring Boot for comprehensive schedule management, applying layered architecture and best practices from the Java Enterprise ecosystem.",
-    stack: ["Java 17", "Spring Boot", "Spring Data JPA", "Maven", "H2 Database", "Hibernate"],
+    stack: [
+      "Java 17",
+      "Spring Boot",
+      "Spring Data JPA",
+      "Maven",
+      "H2 Database",
+      "Hibernate",
+    ],
     highlights: [
       "Professional Layered Architecture — Implemented clear separation of responsibilities with Controller, Service, Repository, and Entity, following design patterns used in enterprise applications",
       "Persistence with JPA/Hibernate — Utilized Spring Data JPA for database abstraction, implementing repository pattern with automatic and type-safe CRUD operations",
@@ -72,10 +92,11 @@ export const projects = [
     ],
     live: "https://agendador-horarios-java.vercel.app",
     repo: "https://github.com/GianlucaAlves/agendador-horarios-Java",
+    screenshots: [""],
   },
-   {
+  {
     slug: "gerenciador-tarefas",
-    title: "Task Manager with React and Tailwindcss", 
+    title: "Task Manager with React and Tailwindcss",
     description:
       "Modern web application for task management (To-Do List) developed with React 18 and Tailwind CSS, allowing users to create, mark as completed, view details, and delete tasks in an intuitive and responsive manner.",
     stack: ["React", "TypeScript", "Tailwind"],
@@ -88,6 +109,7 @@ export const projects = [
     ],
     live: "https://gerenciador-de-tarefas-com-react-e.vercel.app",
     repo: "https://github.com/GianlucaAlves/Gerenciador-de-tarefas-com-React-e-Tailwind",
+    screenshots: [""],
   },
   {
     slug: "sistema-coleta-feedback",
@@ -100,10 +122,11 @@ export const projects = [
       "Dynamic Visual Feedback — Developed a contextual alert system that changes color and emoji automatically (green/yellow/red) based on user ratings, significantly improving UX",
       "Professional Responsive Design — Utilized Bootstrap 5 and Flexbox to create an adaptable interface that works perfectly on desktop, tablet, and mobile with a centered and modern layout",
       "Pure DOM Manipulation — Implemented all interactivity logic with Vanilla JavaScript without external dependencies, demonstrating mastery of language fundamentals",
-      "Accessibility and Semantics — Applied best practices of semantic HTML5 with <form>, <fieldset>, <legend> elements and ARIA attributes for better accessibility"
+      "Accessibility and Semantics — Applied best practices of semantic HTML5 with <form>, <fieldset>, <legend> elements and ARIA attributes for better accessibility",
     ],
     live: "https://project1.vercel.app",
     repo: "https://github.com/GianlucaAlves/Sistema-de-Coleta-e-Validacao-Node.js-HTML-CSS-Bootstrap",
+    screenshots: [""],
   },
   {
     slug: "api-rest",
@@ -120,6 +143,7 @@ export const projects = [
     ],
     live: "https://portfolio-gamma-peach-gelajuwt1r.vercel.app",
     repo: "https://github.com/GianlucaAlves/CRUD-basico-Node.js-HTML-CSS",
+    screenshots: [""],
   },
 ];
 
@@ -135,9 +159,8 @@ export const skills = [
   "Python",
   "SQL",
   "Java 17+",
-  "Spring Boot"
+  "Spring Boot",
 ];
-
 
 export const contact = {
   linkedin: "https://linkedin.com/in/gianluca-alves",

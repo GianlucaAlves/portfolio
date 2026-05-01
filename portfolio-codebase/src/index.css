@@ -1,5 +1,16 @@
 @import "tailwindcss"; 
 
+html,
+body,
+#root {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+}
+
 @keyframes blink {
   0%, 100% {opacity: 1;}
   50% {opacity: 0;}
@@ -21,4 +32,17 @@
 }
 .fade-in {
   animation: fadeIn 0.6s ease;
+}
+
+@keyframes phosphorFlash {
+  from {
+    text-shadow: 0 0 12px rgba(0,255,65,0.9);
+  }
+  to {
+    text-shadow: 0 0 4px rgba(0,255,65,0.3);
+  }
+}
+
+.phosphor-flash {
+  animation: phosphorFlash 0.4s ease-out;
 }
