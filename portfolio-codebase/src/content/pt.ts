@@ -67,7 +67,7 @@ export const projects = [
     ],
     live: "https://portfolio-gamma-peach-gelajuwt1r.vercel.app",
     repo: "https://github.com/GianlucaAlves/portfolio",
-    screenshots: [""],
+    screenshots: ["../../public/portfolio-home.png", "../../public/portfolio-about.png"],
   },
   {
     slug: "megasena-conferidor",
