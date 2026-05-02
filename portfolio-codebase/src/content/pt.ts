@@ -23,6 +23,7 @@ export const about = {
   bio: "Apaixonado por programação e obcecado em evoluir. Gosto de desafios que me tiram da zona de conforto e acredito que crescer como desenvolvedor é resultado de atenção aos detalhes e vontade constante de melhorar.",
   location: "Jacareí-SP, Brasil",
   college: "FATEC Jacareí-SP, Desenvolvimento de Software, 2º semestre",
+  role: "Estagiário de Desenvolvimento de Software na Ericsson",
   goal: "Crescer como desenvolvedor Full Stack e contribuir com produtos que geram impacto real.",
   image: "../../public/profile.png",
 };
@@ -185,6 +186,76 @@ export const contact = {
   email: "alves.gian@ymail.com",
 };
 
+export const resume = {
+  titleAscii:
+    `
+ ██████╗██╗   ██╗██████╗ ██████╗ ██╗ ██████╗██╗   ██╗██╗      ██████╗ 
+██╔════╝██║   ██║██╔══██╗██╔══██╗██║██╔════╝██║   ██║██║     ██╔═══██╗
+██║     ██║   ██║██████╔╝██████╔╝██║██║     ██║   ██║██║     ██║   ██║
+██║     ██║   ██║██╔══██╗██╔══██╗██║██║     ██║   ██║██║     ██║   ██║
+╚██████╗╚██████╔╝██║  ██║██║  ██║██║╚██████╗╚██████╔╝███████╗╚██████╔╝
+ ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝ ╚═════╝ ╚═════╝ ╚══════╝ ╚═════╝ 
+                                                                      
+    `,
+  ascii: `╔══════════════════════════════════════════════════════════════════╗
+║              GIANLUCA LOURENÇO ALVES                            ║
+║              Desenvolvedor Full Stack                           ║
+╚══════════════════════════════════════════════════════════════════╝
+
+  Jacareí, SP — Brasil
+  alves.gian@ymail.com  ·  (12) 99723-8785
+  linkedin.com/in/gianluca-alves  ·  github.com/GianlucaAlves
+
+──────────────────────────────────────────────────────────────────
+  RESUMO
+──────────────────────────────────────────────────────────────────
+  Estudante de tecnologia com experiência prática no desenvolvimento
+  de aplicações web full stack, APIs REST e sistemas de autenticação.
+  Aprendizado rápido e forte motivação para resolver problemas reais
+  através do código.
+
+──────────────────────────────────────────────────────────────────
+  HABILIDADES TÉCNICAS
+──────────────────────────────────────────────────────────────────
+  Frontend   React · Next.js · TypeScript · JavaScript
+             Tailwind CSS · HTML · CSS
+  Backend    Node.js · Express.js · REST APIs
+             Autenticação & Autorização · Prisma
+  Database   PostgreSQL
+  Tools      Git · GitHub · Docker · pnpm
+
+──────────────────────────────────────────────────────────────────
+  EXPERIÊNCIA & PROJETOS
+──────────────────────────────────────────────────────────────────
+  Website Institucional — Agrirslab (INPE)
+  Projeto Acadêmico · HTML · CSS · Node.js · Express · PostgreSQL
+  ▸ Desenvolvi um website institucional para um núcleo de pesquisa
+    ligado ao INPE.
+  ▸ Implementei CRUD completo para gestão de conteúdo com PostgreSQL.
+  ▸ Criei dashboard de membros com controle de acesso por papéis.
+  ▸ Protegi rotas administrativas e endpoints REST do frontend.
+
+  Portfólio Interativo em Terminal
+  Projeto Pessoal · React · TypeScript · Tailwind CSS · Vite
+  ▸ Portfólio em estilo terminal com navegação orientada por comandos.
+  ▸ Suporte a português/inglês e navegação por teclado.
+  ▸ Foco em componentização, tipagem forte e reutilização.
+
+  Plandica — Gerenciador de Operações de Cultivo
+  Projeto Pessoal · Next.js · Express · Prisma · PostgreSQL
+  ▸ Aplicação full stack para gestão de cultivo com plantas, eventos,
+    tarefas, timeline e histórico em um fluxo unificado.
+  ▸ Autenticação, isolamento de dados por usuário e cobertura REST.
+  ▸ Diário de eventos, upload de imagens e exportação de dados.
+
+──────────────────────────────────────────────────────────────────
+  FORMAÇÃO
+──────────────────────────────────────────────────────────────────
+  Fatec Jacareí                               Ago 2025 – Jul 2028
+  Tecnólogo em Desenvolvimento de Software Multiplataforma`,
+  downloadLabel: "Baixar PDF",
+};
+
 export const help = {
   help: "help - Listar todos os comandos disponíveis",
   clear: "clear - Limpar o terminal",
@@ -192,5 +263,6 @@ export const help = {
   projects: "projects - Mostrar projetos em destaque",
   skills: "skills - Mostrar principais habilidades",
   contact: "contact - Mostrar links de contato",
+  resume: "resume - Mostrar currículo formatado",
   lang: "lang en - Mudar idioma para inglês",
 };

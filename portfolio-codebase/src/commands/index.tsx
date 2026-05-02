@@ -47,6 +47,7 @@ export const commands = (
               <li>{help.projects}</li>
               <li>{help.skills}</li>
               <li>{help.contact}</li>
+              <li>{help.resume}</li>
               <li>{help.lang}</li>
             </ul>
           </div>
@@ -296,6 +297,36 @@ export const commands = (
               </a>
             </div>
           </>
+        ),
+      };
+    },
+  },
+  {
+    name: "resume",
+    description: "Show formatted resume",
+    run: () => {
+      const resume = texts(lang).resume;
+      return {
+        output: (
+          <div className="font-mono text-green-300 flex flex-col items-center">
+            <pre className="text-green-400 font-mono text-[8px] sm:text-xs md:text-sm leading-none mb-4 mt-2 whitespace-pre w-fit max-w-full scale-[0.8] sm:scale-100 origin-top">
+              {resume.titleAscii}
+            </pre>
+            <div className="w-fit max-w-full">
+              <pre className="text-[9px] sm:text-xs md:text-sm leading-relaxed whitespace-pre-wrap break-words text-left">
+                {resume.ascii}
+              </pre>
+              <div className="mt-2 border-t border-b border-green-500/30 py-2 text-[10px] sm:text-xs md:text-sm text-left">
+                <a
+                  href="/resume.pdf"
+                  download
+                  className="text-green-400 underline underline-offset-2 hover:text-green-200"
+                >
+                  {resume.downloadLabel}
+                </a>
+              </div>
+            </div>
+          </div>
         ),
       };
     },

@@ -23,6 +23,7 @@ export const about = {
   bio: "Passionate about programming and obsessed with evolving. I enjoy challenges that take me out of my comfort zone and believe that growing as a developer is the result of attention to detail and a constant desire to improve.",
   location: "Jacareí-SP, Brazil",
   college: "FATEC Jacareí-SP, Software Development, 2nd semester",
+  role: "Software Development Intern at Ericsson",
   goal: "Grow as a Full Stack developer and contribute to products that generate real impact.",
   image: "../../public/profile.png",
 };
@@ -188,6 +189,80 @@ export const contact = {
   email: "alves.gian@ymail.com",
 };
 
+export const resume = {
+  titleAscii:`
+██████╗ ███████╗███████╗██╗   ██╗███╗   ███╗███████╗
+██╔══██╗██╔════╝██╔════╝██║   ██║████╗ ████║██╔════╝
+██████╔╝█████╗  ███████╗██║   ██║██╔████╔██║█████╗  
+██╔══██╗██╔══╝  ╚════██║██║   ██║██║╚██╔╝██║██╔══╝  
+██║  ██║███████╗███████║╚██████╔╝██║ ╚═╝ ██║███████╗
+╚═╝  ╚═╝╚══════╝╚══════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝`
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    ,
+  ascii: `╔══════════════════════════════════════════════════════════════════╗
+║              GIANLUCA LOURENÇO ALVES                            ║
+║              Fullstack Developer                                ║
+╚══════════════════════════════════════════════════════════════════╝
+
+  Jacareí, SP — Brazil
+  alves.gian@ymail.com  ·  (12) 99723-8785
+  linkedin.com/in/gianluca-alves  ·  github.com/GianlucaAlves
+
+──────────────────────────────────────────────────────────────────
+  SUMMARY
+──────────────────────────────────────────────────────────────────
+  Technology student with hands-on experience building fullstack
+  web applications, REST APIs, and authentication systems.
+  Fast learner with a strong drive to solve real-world problems
+  through code.
+
+──────────────────────────────────────────────────────────────────
+  TECHNICAL SKILLS
+──────────────────────────────────────────────────────────────────
+  Frontend   React · Next.js · TypeScript · JavaScript
+             Tailwind CSS · HTML · CSS
+  Backend    Node.js · Express.js · REST APIs
+             Authentication & Authorization · Prisma
+  Database   PostgreSQL
+  Tools      Git · GitHub · Docker · pnpm
+
+──────────────────────────────────────────────────────────────────
+  EXPERIENCE & PROJECTS
+──────────────────────────────────────────────────────────────────
+  Institutional Website — Agrirslab (INPE)
+  Academic Project · HTML · CSS · Node.js · Express · PostgreSQL
+  ▸ Built an institutional website for a research agency at INPE.
+  ▸ Developed full CRUD for content management with PostgreSQL.
+  ▸ Implemented members dashboard with role-based access control.
+  ▸ Protected admin routes; built REST endpoints for frontend.
+
+  Interactive Terminal Portfolio
+  Personal Project · React · TypeScript · Tailwind CSS · Vite
+  ▸ Terminal-style portfolio with command-driven navigation.
+  ▸ English/Portuguese support and keyboard navigation.
+  ▸ Focus on componentization, strong typing, and reusability.
+
+  Plandica — Cultivation Operations Manager
+  Personal Project · Next.js · Express · Prisma · PostgreSQL
+  ▸ Fullstack app for cultivation management (plants, events,
+    tasks, timeline, history) in a unified workflow.
+  ▸ Auth, per-user data isolation, and full REST API coverage.
+  ▸ Event journal, image uploads, and data export.
+
+──────────────────────────────────────────────────────────────────
+  EDUCATION
+──────────────────────────────────────────────────────────────────
+  Fatec Jacareí                               Aug 2025 – Jul 2028
+  Associate Degree in Multiplatform Software Development`,
+  downloadLabel: "Download PDF",
+};
+
 export const help = {
   help: "help - List all available commands",
   clear: "clear - Clear the terminal",
@@ -195,5 +270,6 @@ export const help = {
   projects: "projects - Show featured projects",
   skills: "skills - Show main skills",
   contact: "contact - Show contact links",
+  resume: "resume - Show formatted resume",
   lang: "lang pt - Change language to portuguese",
 };
