@@ -1,6 +1,6 @@
 import type { JSX } from "react";
 
-export type GameName = "snake" | "pacman";
+export type GameName = "snake" | "pacman" | "pokemon";
 
 export type CommandResult = {
   output: string | JSX.Element;

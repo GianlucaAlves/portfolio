@@ -2,6 +2,7 @@ import { useRef, useState, useEffect, type JSX } from "react";
 import { commands } from "../commands";
 import SnakeGame from "./SnakeGame";
 import PacManGame from "./PacManGame";
+import PokemonGame from "../games/pokemon/PokemonGame";
 import type { GameName } from "../types/Command";
 
 type TerminalProps = {
@@ -96,8 +97,10 @@ export default function Terminal({ lang, setLang }: TerminalProps) {
           <div className="h-[62vh] min-h-[30rem] w-full flex flex-col justify-center">
             {activeGame === "snake" ? (
               <SnakeGame lang={lang} onExit={handleExitGame} />
-            ) : (
+            ) : activeGame === "pacman" ? (
               <PacManGame lang={lang} onExit={handleExitGame} />
+            ) : (
+              <PokemonGame onExit={handleExitGame} />
             )}
           </div>
         ) : (

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import MobileGameControls from "./MobileGameControls";
 
 type PacManGameProps = {
   lang: "en" | "pt";
@@ -564,6 +565,13 @@ export default function PacManGame({ lang, onExit }: PacManGameProps) {
             ? winLabel
             : controlsLabel}
       </div>
+
+      <MobileGameControls
+        actions={[
+          { key: "r", label: "Restart", accent: "primary" },
+          { key: "q", label: "Quit", accent: "danger" },
+        ]}
+      />
     </div>
   );
 }

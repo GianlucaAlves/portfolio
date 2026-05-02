@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import MobileGameControls from "./MobileGameControls";
 
 type SnakeGameProps = {
   lang: "en" | "pt";
@@ -294,6 +295,13 @@ export default function SnakeGame({ lang, onExit }: SnakeGameProps) {
       >
         {gameState.status === "gameOver" ? gameOverLabel : controlsLabel}
       </div>
+
+      <MobileGameControls
+        actions={[
+          { key: "r", label: "Restart", accent: "primary" },
+          { key: "q", label: "Quit", accent: "danger" },
+        ]}
+      />
     </div>
   );
 }

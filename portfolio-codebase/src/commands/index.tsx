@@ -317,6 +317,13 @@ export const commands = (
         };
       }
 
+      if (normalizedGame === "pokemon") {
+        return {
+          output: "",
+          launchGame: "pokemon",
+        };
+      }
+
       if (normalizedGame !== "") {
         return {
           output:
@@ -346,6 +353,14 @@ export const commands = (
                 {lang === "en"
                   ? " — Terminal maze chase"
                   : " — Perseguição em labirinto no terminal"}
+              </span>
+            </div>
+            <div className="mb-3">
+              <span className="text-green-400">â–¸ pokemon</span>
+              <span className="text-green-500/80">
+                {lang === "en"
+                  ? " â€” Gen I text RPG adventure"
+                  : " â€” Aventura RPG textual da Gen I"}
               </span>
             </div>
             <div>
