@@ -24,7 +24,7 @@ export const about = {
   location: "Jacareí-SP, Brazil",
   college: "FATEC Jacareí-SP, Software Development, 2nd semester",
   goal: "Grow as a Full Stack developer and contribute to products that generate real impact.",
-  image: "../../public/profile.png",
+  image: "/profile.png",
 };
 
 export const projects = [
@@ -51,7 +51,7 @@ export const projects = [
     ],
     live: "https://website-institucional-agrirs-lab-in.vercel.app/home.html",
     repo: "https://github.com/GianlucaAlves/Website-Institucional-AgrirsLab-INPE",
-    screenshots: ["../../public/agrirslab1.png", "../../public/agrirslab2.png", "../../public/agrirslab3.png"],
+    screenshots: ["/agrirslab1.png", "/agrirslab2.png", "/agrirslab3.png"],
   },
   {
     slug: "portfolio",
@@ -70,8 +70,8 @@ export const projects = [
     live: "https://portfolio-gamma-peach-gelajuwt1r.vercel.app",
     repo: "https://github.com/GianlucaAlves/portfolio",
     screenshots: [
-      "../../public/portfolio-home.png",
-      "../../public/portfolio-about.png",
+      "/portfolio-home.png",
+      "/portfolio-about.png",
     ],
   },
   {
@@ -99,7 +99,7 @@ export const projects = [
     ],
     live: "",
     repo: "https://github.com/GianlucaAlves/MegaSena-Conferidor-WebApp",
-    screenshots: ["../../public/megasena-conferidor1.png", "../../public/megasena-conferidor2.png", "../../public/megasena-conferidor3.png", "../../public/megasena-conferidor4.png"],
+    screenshots: ["/megasena-conferidor1.png", "/megasena-conferidor2.png", "/megasena-conferidor3.png", "/megasena-conferidor4.png"],
   },
   {
     slug: "mega-palpites",
@@ -117,7 +117,7 @@ export const projects = [
     ],
     live: "https://mega-sena-suggester.vercel.app",
     repo: "https://github.com/GianlucaAlves/mega-sena-suggester",
-    screenshots: ["../../public/megasena-suggester1.png", "../../public/megasena-suggester2.png", "../../public/megasena-suggester3.png", "../../public/megasena-suggester4.png", "../../public/megasena-suggester5.png"],
+    screenshots: ["/megasena-suggester1.png", "/megasena-suggester2.png", "/megasena-suggester3.png", "/megasena-suggester4.png", "/megasena-suggester5.png"],
   },
   {
     slug: "medsystem",
@@ -145,7 +145,7 @@ export const projects = [
     ],
     live: "",
     repo: "https://github.com/GianlucaAlves/MedSystem",
-    screenshots: ["../../public/medsystem1.jpg", "../../public/medsystem2.jpg", "../../public/medsystem3.jpg"],
+    screenshots: ["/medsystem1.jpg", "/medsystem2.jpg", "/medsystem3.jpg"],
   },
   {
     slug: "plandica",
@@ -171,7 +171,7 @@ export const projects = [
     ],
     live: "",
     repo: "https://github.com/GianlucaAlves/GrowOps",
-    screenshots: ["../../public/plandica1.jpg", "../../public/plandica2.jpg", "../../public/plandica3.jpg", "../../public/plandica4.jpg", "../../public/plandica5.jpg"],
+    screenshots: ["/plandica1.jpg", "/plandica2.jpg", "/plandica3.jpg", "/plandica4.jpg", "/plandica5.jpg"],
   },
 ];
 
