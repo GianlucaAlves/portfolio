@@ -22,6 +22,7 @@ type BattleScreenProps = {
   onStateSync?: (
     party: OwnedPokemon[],
     bag: { itemId: string; quantity: number }[],
+    activePartyIndex: number,
   ) => void;
   onBattleEnd: (result: {
     outcome: "win" | "lose" | "flee";
@@ -160,6 +161,8 @@ function canActAfterStatusMessage(pokemon: BattlePokemon, message: string) {
   return true;
 }
 
+type TurnActionResult = "continue" | "player_ko" | "enemy_ko" | "skipped";
+
 export default function BattleScreen({
   playerPokemon,
   enemyPokemon,
@@ -243,6 +246,7 @@ export default function BattleScreen({
     onStateSync?.(
       battleRef.current.party.map(cloneOwnedPokemon),
       [...battleRef.current.bag],
+      battleRef.current.activePartyIndex,
     );
   }
 
@@ -289,6 +293,7 @@ export default function BattleScreen({
     onStateSync?.(
       battleRef.current.party.map(cloneOwnedPokemon),
       [...battleRef.current.bag],
+      battleRef.current.activePartyIndex,
     );
     onBattleEnd(result);
   }
@@ -325,7 +330,7 @@ export default function BattleScreen({
     setVisibleLog((current) => [...current, "Choose another Pokémon!"].slice(-4));
   }
 
-  async function runEnemyTurn() {
+  async function runEnemyAction(): Promise<TurnActionResult> {
     const startStatus = processStatusEffects(battleRef.current.enemyActive);
     battleRef.current.enemyActive = startStatus.pokemon;
     syncRender();
@@ -335,15 +340,14 @@ export default function BattleScreen({
     }
 
     if (startStatus.message && !canActAfterStatusMessage(startStatus.pokemon, startStatus.message)) {
-      battleRef.current.phase = "select";
-      syncRender();
-      return;
+      return "skipped";
     }
 
     const moveId = getAIMove(
       battleRef.current.enemyActive,
       battleRef.current.playerActive,
     );
+    const moveName = MOVES_DATA[moveId]?.name ?? "Struggle";
     const result = executeMove(
       battleRef.current.enemyActive,
       battleRef.current.playerActive,
@@ -354,22 +358,17 @@ export default function BattleScreen({
     battleRef.current.enemyActive = result.newAttacker;
     battleRef.current.playerActive = result.newDefender;
     updateOwnedFromBattle();
-    await revealMessages(result.messages);
+    await revealMessages([`Enemy used ${moveName}!`, ...result.messages.slice(1)]);
 
     if (result.knockedOut || battleRef.current.playerActive.currentHP <= 0) {
       await revealMessages([`${battleRef.current.playerActive.name.toUpperCase()} fainted!`]);
-      await handlePlayerKO();
-      return;
+      return "player_ko";
     }
 
-    battleRef.current.phase = "select";
-    syncRender();
+    return "continue";
   }
 
-  async function runPlayerMove(moveId: string) {
-    battleRef.current.phase = "select";
-    syncRender();
-
+  async function runPlayerAction(moveId: string): Promise<TurnActionResult> {
     const startStatus = processStatusEffects(battleRef.current.playerActive);
     battleRef.current.playerActive = startStatus.pokemon;
     updateOwnedFromBattle();
@@ -382,8 +381,7 @@ export default function BattleScreen({
       startStatus.message &&
       !canActAfterStatusMessage(startStatus.pokemon, startStatus.message)
     ) {
-      await runEnemyTurn();
-      return;
+      return "skipped";
     }
 
     const result = executeMove(
@@ -400,11 +398,86 @@ export default function BattleScreen({
 
     if (result.knockedOut || battleRef.current.enemyActive.currentHP <= 0) {
       await revealMessages([`${battleRef.current.enemyActive.name.toUpperCase()} fainted!`]);
+      return "enemy_ko";
+    }
+
+    return "continue";
+  }
+
+  function playerActsFirst() {
+    const playerSpeed = battleRef.current.playerActive.stats.speed;
+    const enemySpeed = battleRef.current.enemyActive.stats.speed;
+
+    if (playerSpeed > enemySpeed) {
+      return true;
+    }
+
+    if (enemySpeed > playerSpeed) {
+      return false;
+    }
+
+    return Math.random() > 0.5;
+  }
+
+  async function runEnemyTurn() {
+    battleRef.current.phase = "select";
+    syncRender();
+
+    const result = await runEnemyAction();
+
+    if (result === "player_ko") {
+      await handlePlayerKO();
+      return;
+    }
+
+    battleRef.current.phase = "select";
+    syncRender();
+  }
+
+  async function runPlayerMove(moveId: string) {
+    battleRef.current.phase = "select";
+    syncRender();
+
+    const playerFirst = playerActsFirst();
+    const firstResult = playerFirst
+      ? await runPlayerAction(moveId)
+      : await runEnemyAction();
+
+    if (firstResult === "enemy_ko") {
       await handleWin();
       return;
     }
 
-    await runEnemyTurn();
+    if (firstResult === "player_ko") {
+      await handlePlayerKO();
+      return;
+    }
+
+    if (
+      battleRef.current.playerActive.currentHP <= 0 ||
+      battleRef.current.enemyActive.currentHP <= 0
+    ) {
+      battleRef.current.phase = "select";
+      syncRender();
+      return;
+    }
+
+    const secondResult = playerFirst
+      ? await runEnemyAction()
+      : await runPlayerAction(moveId);
+
+    if (secondResult === "enemy_ko") {
+      await handleWin();
+      return;
+    }
+
+    if (secondResult === "player_ko") {
+      await handlePlayerKO();
+      return;
+    }
+
+    battleRef.current.phase = "select";
+    syncRender();
   }
 
   async function handleCapture(itemId: string) {
@@ -443,7 +516,7 @@ export default function BattleScreen({
     await runEnemyTurn();
   }
 
-  function useBattleItem(itemId: string, partyIndex: number) {
+  async function useBattleItem(itemId: string, partyIndex: number) {
     const item = SHOP_ITEMS.find((entry) => entry.id === itemId);
     const bagEntry = battleRef.current.bag.find((entry) => entry.itemId === itemId);
     const ownedTarget = battleRef.current.party[partyIndex];
@@ -451,7 +524,7 @@ export default function BattleScreen({
     if (!item || !bagEntry || !ownedTarget) return;
 
     if (item.effect === "pokeball") {
-      void handleCapture(itemId);
+      await handleCapture(itemId);
       return;
     }
 
@@ -493,9 +566,10 @@ export default function BattleScreen({
     battleRef.current.selectedItemId = null;
     syncRender();
     setVisibleLog((current) => [...current, `${nextOwned.nickname ?? targetBattle.name} used ${item.name}!`].slice(-4));
+    await runEnemyTurn();
   }
 
-  function switchPokemon(partyIndex: number) {
+  async function switchPokemon(partyIndex: number) {
     const selected = battleRef.current.party[partyIndex];
     if (!selected || partyIndex === battleRef.current.activePartyIndex || selected.currentHP <= 0) {
       return;
@@ -509,6 +583,7 @@ export default function BattleScreen({
     battleRef.current.phase = "select";
     syncRender();
     setVisibleLog((current) => [...current, `Go! ${(selected.nickname ?? battleRef.current.playerActive.name).toUpperCase()}!`].slice(-4));
+    await runEnemyTurn();
   }
 
   useEffect(() => {
@@ -654,7 +729,7 @@ export default function BattleScreen({
           event.preventDefault();
           const target = selectableParty[targetIndex];
           if (target && battleRef.current.selectedItemId) {
-            useBattleItem(battleRef.current.selectedItemId, target.index);
+            void useBattleItem(battleRef.current.selectedItemId, target.index);
           }
         }
 
@@ -678,7 +753,7 @@ export default function BattleScreen({
           event.preventDefault();
           const selected = selectableParty[subIndex];
           if (selected) {
-            switchPokemon(selected.index);
+            void switchPokemon(selected.index);
           }
         }
       }

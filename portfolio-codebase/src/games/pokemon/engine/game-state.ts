@@ -14,6 +14,7 @@ type OwnedStatus =
   | "paralyzed"
   | "burned"
   | "poisoned"
+  | "badly_poisoned"
   | "asleep"
   | "frozen";
 
@@ -391,6 +392,7 @@ function addToParty(state: GameState, pokemon: OwnedPokemon): GameState {
       player: {
         ...state.player,
         party: [...state.player.party, { ...pokemon, moves: pokemon.moves.map((move) => ({ ...move })) }],
+        totalCaptures: state.player.totalCaptures + 1,
       },
     },
     `${getPokemonById(pokemon.pokemonId).name} joined your party!`,

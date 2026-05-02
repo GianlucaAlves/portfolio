@@ -11,6 +11,7 @@ type BattleStatus =
   | "paralyzed"
   | "burned"
   | "poisoned"
+  | "badly_poisoned"
   | "asleep"
   | "frozen";
 
@@ -150,6 +151,7 @@ const IMMUNITIES: Partial<Record<BattleStatus, PokemonType[]>> = {
   paralyzed: ["Electric"],
   burned: ["Fire"],
   poisoned: ["Poison", "Ghost"],
+  badly_poisoned: ["Poison", "Ghost"],
   frozen: ["Ice"],
 };
 
@@ -229,7 +231,7 @@ function getStatusModifier(status?: BattleStatus) {
   if (status === "paralyzed" || status === "asleep" || status === "frozen") {
     return 2;
   }
-  if (status === "burned" || status === "poisoned") {
+  if (status === "burned" || status === "poisoned" || status === "badly_poisoned") {
     return 1.5;
   }
   return 1;
@@ -263,6 +265,8 @@ function capitalizeStatus(status: BattleStatus) {
       return "BURNED";
     case "poisoned":
       return "POISONED";
+    case "badly_poisoned":
+      return "BADLY POISONED";
     case "asleep":
       return "ASLEEP";
     case "frozen":
@@ -371,7 +375,10 @@ function getStatusMoveOutcome(
       freeze: "frozen",
     };
 
-    const result = applyStatusEffect(defender, statusMap[move.effect]);
+    const status = move.effect === "poison" && move.id === "toxic"
+      ? "badly_poisoned"
+      : statusMap[move.effect];
+    const result = applyStatusEffect(defender, status);
     return {
       attacker,
       defender: result.pokemon,
@@ -563,7 +570,7 @@ function applyStatusEffect(
 
   if (status === "asleep") {
     nextPokemon.statusTurns = 1 + Math.floor(Math.random() * 7);
-  } else if (status === "poisoned") {
+  } else if (status === "badly_poisoned") {
     nextPokemon.statusTurns = 1;
   } else {
     nextPokemon.statusTurns = 0;
@@ -595,6 +602,17 @@ function processStatusEffects(
   }
 
   if (nextPokemon.status === "poisoned") {
+    const damage = Math.max(1, Math.floor(nextPokemon.maxHP / 16));
+    const damagedPokemon = applyResidualDamage(nextPokemon, damage);
+    damagedPokemon.statusTurns = 0;
+    return {
+      pokemon: damagedPokemon,
+      message: `${formatPokemonName(pokemon.name)} is hurt by poison!`,
+      damaged: true,
+    };
+  }
+
+  if (nextPokemon.status === "badly_poisoned") {
     const poisonCounter = Math.max(1, nextPokemon.statusTurns ?? 1);
     const damage = Math.max(1, Math.floor((nextPokemon.maxHP / 16) * poisonCounter));
     const damagedPokemon = applyResidualDamage(nextPokemon, damage);
@@ -733,7 +751,9 @@ function executeMove(
 
     const status =
       move.effect && move.effect !== "stat_boost"
-        ? statusMap[move.effect]
+        ? move.effect === "poison" && move.id === "toxic"
+          ? "badly_poisoned"
+          : statusMap[move.effect]
         : undefined;
     if (status) {
       const statusResult = applyStatusEffect(nextDefender, status);

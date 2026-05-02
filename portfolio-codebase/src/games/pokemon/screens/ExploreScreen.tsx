@@ -27,7 +27,7 @@ type ZoneKey = "forest" | "grass" | "cave" | "mountain" | "sea";
 
 type BattleContext = {
   zone: ZoneKey;
-  playerPartyIndex: number;
+  activePartyIndex: number;
   enemyPokemon: BattlePokemon;
 };
 
@@ -146,6 +146,7 @@ export default function ExploreScreen({
   const [visibleLog, setVisibleLog] = useState<string[]>([]);
   const [awaitAnyKey, setAwaitAnyKey] = useState(false);
   const [battleContext, setBattleContext] = useState<BattleContext | null>(null);
+  const battleContextRef = useRef<BattleContext | null>(null);
   const phaseRef = useRef<ExplorePhase>("zone_select");
   const zoneRef = useRef<number>(0);
   const workingStateRef = useRef<GameState>(cloneGameState(gameState));
@@ -156,6 +157,11 @@ export default function ExploreScreen({
   function syncPhase(nextPhase: ExplorePhase) {
     phaseRef.current = nextPhase;
     setPhase(nextPhase);
+  }
+
+  function setBattleContextAndRef(nextContext: BattleContext | null) {
+    battleContextRef.current = nextContext;
+    setBattleContext(nextContext);
   }
 
   function clearTimers() {
@@ -195,6 +201,7 @@ export default function ExploreScreen({
   function syncBattleState(
     party: OwnedPokemon[],
     bag: { itemId: string; quantity: number }[],
+    activePartyIndex?: number,
   ) {
     const nextState = {
       ...workingStateRef.current,
@@ -205,6 +212,15 @@ export default function ExploreScreen({
       },
     };
     setStateAndRef(nextState);
+    if (typeof activePartyIndex === "number") {
+      const currentContext = battleContextRef.current;
+      if (currentContext) {
+        setBattleContextAndRef({
+          ...currentContext,
+          activePartyIndex,
+        });
+      }
+    }
   }
 
   function runPokemonCenter() {
@@ -279,9 +295,9 @@ export default function ExploreScreen({
 
       const wild = getRandomWildPokemon(zone);
       const enemyPokemon = createBattlePokemon(wild.pokemonId, wild.level);
-      setBattleContext({
+      setBattleContextAndRef({
         zone,
-        playerPartyIndex: activePartyIndex,
+        activePartyIndex,
         enemyPokemon,
       });
       syncPhase("encounter");
@@ -302,15 +318,16 @@ export default function ExploreScreen({
     moneyGained?: number;
     caughtPokemon?: OwnedPokemon;
   }) {
-    if (!battleContext) return;
+    const currentBattleContext = battleContextRef.current;
+    if (!currentBattleContext) return;
 
     let nextState = cloneGameState(workingStateRef.current);
     syncPhase("result");
-    setBattleContext(null);
+    setBattleContextAndRef(null);
 
     if (result.outcome === "win") {
       if (typeof result.xpGained === "number") {
-        nextState = gainXP(nextState, battleContext.playerPartyIndex, result.xpGained);
+        nextState = gainXP(nextState, currentBattleContext.activePartyIndex, result.xpGained);
       }
 
       const messages: string[] = [];
@@ -423,7 +440,7 @@ export default function ExploreScreen({
   }, [awaitAnyKey, workingState]);
 
   if (phase === "battle" && battleContext) {
-    const activeOwned = workingState.player.party[battleContext.playerPartyIndex];
+    const activeOwned = workingState.player.party[battleContext.activePartyIndex];
 
     return (
       <div className="w-full h-full min-h-[36rem] flex flex-col justify-center">
