@@ -48,6 +48,7 @@ export const commands = (
               <li>{help.skills}</li>
               <li>{help.contact}</li>
               <li>{help.resume}</li>
+              <li>{help.games}</li>
               <li>{help.lang}</li>
             </ul>
           </div>
@@ -292,6 +293,67 @@ export const commands = (
               </a>
             </div>
           </>
+        ),
+      };
+    },
+  },
+  {
+    name: "games",
+    description: "List available games",
+    run: ([gameName]) => {
+      const normalizedGame = (gameName ?? "").toLowerCase();
+
+      if (normalizedGame === "snake") {
+        return {
+          output: "",
+          launchGame: "snake",
+        };
+      }
+
+      if (normalizedGame === "pacman") {
+        return {
+          output: "",
+          launchGame: "pacman",
+        };
+      }
+
+      if (normalizedGame !== "") {
+        return {
+          output:
+            lang === "en"
+              ? `Game not found: ${normalizedGame}`
+              : `Jogo não encontrado: ${normalizedGame}`,
+        };
+      }
+
+      return {
+        output: (
+          <div className="font-mono text-green-300 text-xs sm:text-sm">
+            <div className="mb-2">
+              {lang === "en" ? "Available games:" : "Jogos disponíveis:"}
+            </div>
+            <div className="mb-3">
+              <span className="text-green-400">▸ snake</span>
+              <span className="text-green-500/80">
+                {lang === "en"
+                  ? " — Classic snake game"
+                  : " — Jogo clássico da cobrinha"}
+              </span>
+            </div>
+            <div className="mb-3">
+              <span className="text-green-400">▸ pacman</span>
+              <span className="text-green-500/80">
+                {lang === "en"
+                  ? " — Terminal maze chase"
+                  : " — Perseguição em labirinto no terminal"}
+              </span>
+            </div>
+            <div>
+              {lang === "en"
+                ? "Type games <name> to start."
+                : "Digite games <nome> para iniciar."}
+            </div>
+          </div>
         ),
       };
     },

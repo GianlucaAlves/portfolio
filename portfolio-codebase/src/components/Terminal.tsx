@@ -1,5 +1,8 @@
 import { useRef, useState, useEffect, type JSX } from "react";
 import { commands } from "../commands";
+import SnakeGame from "./SnakeGame";
+import PacManGame from "./PacManGame";
+import type { GameName } from "../types/Command";
 
 type TerminalProps = {
   lang: "en" | "pt";
@@ -10,6 +13,7 @@ export default function Terminal({ lang, setLang }: TerminalProps) {
   const [history, setHistory] = useState<(string | JSX.Element)[]>([]);
   const [phosphorIndex, setPhosphorIndex] = useState<number | null>(null);
   const [input, setInput] = useState("");
+  const [activeGame, setActiveGame] = useState<GameName | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const endRef = useRef<HTMLDivElement>(null);
   const cmds = commands(lang, setLang);
@@ -38,6 +42,7 @@ export default function Terminal({ lang, setLang }: TerminalProps) {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (activeGame) return;
     const normalizedInput = input.trim().replace(/\s+/g, " ");
     if (normalizedInput === "") return;
     const [rawCmd, ...rawArgs] = normalizedInput.split(" ");
@@ -47,48 +52,84 @@ export default function Terminal({ lang, setLang }: TerminalProps) {
     let output: string | JSX.Element = "";
     let clear = false;
 
+    let launchGame: GameName | undefined;
+
     if (command) {
       const result = command.run(args);
       output = result.output;
       clear = !!result.clear;
+      launchGame = result.launchGame;
     } else {
       output = `Command not found: ${cmd}`;
     }
-    setHistory((h) =>
-      clear ? [] : [...h, `gianluca@portfolio:~$ ${normalizedInput}`, output],
-    );
+
+    if (launchGame) {
+      setActiveGame(launchGame);
+    }
+
+    setHistory((h) => {
+      if (clear) return [];
+
+      const nextHistory = [...h, `gianluca@portfolio:~$ ${normalizedInput}`];
+
+      if (output !== "") {
+        nextHistory.push(output);
+      }
+
+      return nextHistory;
+    });
     setInput("");
+  }
+
+  function handleExitGame() {
+    setActiveGame(null);
+    window.setTimeout(() => {
+      inputRef.current?.focus({ preventScroll: true });
+      endRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, 0);
   }
 
   return (
     <div className="w-full bg-black/80 rounded-lg p-2 sm:p-3 mt-4 sm:mt-6 font-mono text-green-300 text-xs sm:text-sm shadow-lg">
       <div className="min-h-35 sm:min-h-55 w-full">
-        {history.map((line, i) => (
-          <div
-            key={i}
-            className={`mb-3 sm:mb-5 fade-in matrix-glow wrap-break-word max-w-full w-full ${
-              phosphorIndex === i ? "phosphor-flash" : ""
-            }`}
-          >
-            {line}
+        {activeGame ? (
+          <div className="h-[62vh] min-h-[30rem] w-full flex flex-col justify-center">
+            {activeGame === "snake" ? (
+              <SnakeGame lang={lang} onExit={handleExitGame} />
+            ) : (
+              <PacManGame lang={lang} onExit={handleExitGame} />
+            )}
           </div>
-        ))}
-        <form
-          onSubmit={handleSubmit}
-          className="flex flex-wrap gap-2 items-center w-full"
-        >
-          <span className="mr-2 text-green-400 font-mono text-xs sm:text-sm prompt-pulse">
-            gianluca@portfolio:~$
-          </span>
-          <input
-            ref={inputRef}
-            className="appearance-none bg-transparent border-0 outline-none ring-0 shadow-none flex-1 text-green-200 min-w-35 w-full sm:w-auto focus:outline-none focus:ring-0 focus:border-0"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            autoComplete="off"
-            spellCheck={false}
-          />
-        </form>
+        ) : (
+          <>
+            {history.map((line, i) => (
+              <div
+                key={i}
+                className={`mb-3 sm:mb-5 fade-in matrix-glow wrap-break-word max-w-full w-full ${
+                  phosphorIndex === i ? "phosphor-flash" : ""
+                }`}
+              >
+                {line}
+              </div>
+            ))}
+            <form
+              onSubmit={handleSubmit}
+              className="flex flex-wrap gap-2 items-center w-full"
+            >
+              <span className="mr-2 text-green-400 font-mono text-xs sm:text-sm prompt-pulse">
+                gianluca@portfolio:~$
+              </span>
+              <input
+                ref={inputRef}
+                className="appearance-none bg-transparent border-0 outline-none ring-0 shadow-none flex-1 text-green-200 min-w-35 w-full sm:w-auto focus:outline-none focus:ring-0 focus:border-0"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                autoComplete="off"
+                spellCheck={false}
+              />
+            </form>
+          </>
+        )}
         <div ref={endRef} />
       </div>
     </div>

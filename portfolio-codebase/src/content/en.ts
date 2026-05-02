@@ -276,5 +276,6 @@ export const help = {
   skills: "skills - Show main skills",
   contact: "contact - Show contact links",
   resume: "resume - Show formatted resume",
+  games: "games [name] - List games or start one",
   lang: "lang pt - Change language to portuguese",
 };
