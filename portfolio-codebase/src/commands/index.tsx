@@ -139,11 +139,6 @@ export const commands = (
                   <span className="text-green-300">{about.college}</span>
                 </div>
                 <div>
-                  <span className="text-green-600">role</span>
-                  <span className="text-green-500/50 mx-2">→</span>
-                  <span className="text-green-300">{about.role}</span>
-                </div>
-                <div>
                   <span className="text-green-600">goal</span>
                   <span className="text-green-500/50 mx-2">→</span>
                   <span className="text-green-300">{about.goal}</span>

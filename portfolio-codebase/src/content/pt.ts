@@ -23,7 +23,6 @@ export const about = {
   bio: "Apaixonado por programação e obcecado em evoluir. Gosto de desafios que me tiram da zona de conforto e acredito que crescer como desenvolvedor é resultado de atenção aos detalhes e vontade constante de melhorar.",
   location: "Jacareí-SP, Brasil",
   college: "FATEC Jacareí-SP, Desenvolvimento de Software, 2º semestre",
-  role: "Estagiário de Desenvolvimento de Software na Ericsson",
   goal: "Crescer como desenvolvedor Full Stack e contribuir com produtos que geram impacto real.",
   image: "../../public/profile.png",
 };
@@ -31,6 +30,7 @@ export const about = {
 export const projects = [
   {
     slug: "agrirslab",
+    type: "Projeto Acadêmico",
     title: "Website institucional para o Agrirslab do INPE",
     description:
       "Website institucional completo desenvolvido em grupo para o Laboratório de Sensoriamento Remoto Agrícola do INPE, centralizar informações sobre pesquisas, projetos, equipe e publicações científicas, facilitando o acesso da comunidade acadêmica e do público interessado.",
@@ -51,10 +51,11 @@ export const projects = [
     ],
     live: "https://website-institucional-agrirs-lab-in.vercel.app/home.html",
     repo: "https://github.com/GianlucaAlves/Website-Institucional-AgrirsLab-INPE",
-    screenshots: ["../../public/agrirslab.png", "../../public/profile.png"],
+    screenshots: ["../../public/agrirslab1.png", "../../public/agrirslab2.png", "../../public/agrirslab3.png"],
   },
   {
     slug: "portfolio",
+    type: "Projeto Pessoal",
     title: "Portfólio pessoal",
     description:
       "Criação de um portfólio pessoal interativo, no estilo terminal, para apresentar meus projetos, habilidades e experiências. O objetivo é fornecer uma visão geral do meu trabalho e facilitar o contato com potenciais empregadores ou colaboradores.",
@@ -72,6 +73,7 @@ export const projects = [
   },
   {
     slug: "megasena-conferidor",
+    type: "Projeto Pessoal",
     title: "Mega-Sena Full Stack Conferidor WebApp",
     description:
       "Aplicação full-stack completa para consulta de resultados da Mega-Sena, permitindo buscar o sorteio mais recente ou qualquer concurso específico pelo número. Orquestrado com Docker Compose para portabilidade e facilidade de execução em qualquer ambiente.",
@@ -98,6 +100,7 @@ export const projects = [
   },
   {
     slug: "mega-palpites",
+    type: "Projeto Pessoal",
     title: "Mega Palpites — Plataforma de Sugestões para a Mega-Sena",
     description:
       "Plataforma frontend para geração automática, seleção manual, histórico e simulação de sorteios da Mega-Sena. Desenvolvida em React + TypeScript como evolução de um exercício acadêmico para um projeto de portfólio completo.",
@@ -115,6 +118,7 @@ export const projects = [
   },
   {
     slug: "medsystem",
+    type: "Projeto Pessoal",
     title: "MedSystem — Sistema de Agendamentos Médicos Full Stack",
     description:
       "Sistema de agendamentos médicos full-stack com autenticação JWT, controle de acesso por roles, CRUD completo de pacientes e agendamentos, validação de conflito de horários e dashboard com métricas em tempo real.",
@@ -142,6 +146,7 @@ export const projects = [
   },
   {
     slug: "plandica",
+    type: "Projeto Pessoal",
     title: "Plandica — Sistema de Gestão de Cultivo Full Stack",
     description:
       "Sistema full-stack de gerenciamento de cultivo doméstico que permite registrar, rastrear e analisar todo o ciclo de vida de plantas de forma organizada. Inclui diário de cultivo, planner de tarefas, upload de fotos e assistente IA opcional.",

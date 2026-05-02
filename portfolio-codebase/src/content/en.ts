@@ -23,7 +23,6 @@ export const about = {
   bio: "Passionate about programming and obsessed with evolving. I enjoy challenges that take me out of my comfort zone and believe that growing as a developer is the result of attention to detail and a constant desire to improve.",
   location: "Jacareí-SP, Brazil",
   college: "FATEC Jacareí-SP, Software Development, 2nd semester",
-  role: "Software Development Intern at Ericsson",
   goal: "Grow as a Full Stack developer and contribute to products that generate real impact.",
   image: "../../public/profile.png",
 };
@@ -31,6 +30,7 @@ export const about = {
 export const projects = [
   {
     slug: "agrirslab",
+    type: "Academic Project",
     title: "Institutional Website for Agrirslab at INPE",
     description:
       "Complete institutional website developed in a group for the Agricultural Remote Sensing Laboratory at INPE, centralizing information about research, projects, team, and scientific publications, facilitating access for the academic community and interested public.",
@@ -55,6 +55,7 @@ export const projects = [
   },
   {
     slug: "portfolio",
+    type: "Personal Project",
     title: "Personal Portfolio",
     description:
       "Creation of an interactive personal portfolio, in terminal style, to showcase my projects, skills, and experiences. The goal is to provide an overview of my work and facilitate contact with potential employers or collaborators.",
@@ -75,6 +76,7 @@ export const projects = [
   },
   {
     slug: "megasena-conferidor",
+    type: "Personal Project",
     title: "Mega-Sena Full Stack Checker WebApp",
     description:
       "Complete full-stack application for querying Mega-Sena lottery results, allowing users to search for the latest draw or any specific contest by number. Orchestrated with Docker Compose for portability and ease of execution across any environment.",
@@ -101,6 +103,7 @@ export const projects = [
   },
   {
     slug: "mega-palpites",
+    type: "Personal Project",
     title: "Mega Palpites — Mega-Sena Suggestions Platform",
     description:
       "Frontend platform for automatic generation, manual selection, history, and draw simulation for the Mega-Sena lottery. Built with React + TypeScript as an evolution from an academic exercise to a complete portfolio project.",
@@ -118,6 +121,7 @@ export const projects = [
   },
   {
     slug: "medsystem",
+    type: "Personal Project",
     title: "MedSystem — Full Stack Medical Scheduling System",
     description:
       "Full-stack medical scheduling system with JWT authentication, role-based access control, complete patient and appointment CRUD, time conflict validation, and a real-time metrics dashboard.",
@@ -145,6 +149,7 @@ export const projects = [
   },
   {
     slug: "plandica",
+    type: "Personal Project",
     title: "Plandica — Full Stack Cultivation Management System",
     description:
       "Full-stack cultivation management system that allows users to record, track, and analyze the entire life cycle of their plants. Includes a grow journal, task planner, photo uploads, and an optional AI assistant.",
