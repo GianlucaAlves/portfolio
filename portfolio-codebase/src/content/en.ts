@@ -115,7 +115,7 @@ export const projects = [
       "Draw Simulator — Implemented a draw simulation feature that lets users check their bets against a generated result, reproducing the real lottery checking experience",
       "Academic to Portfolio Evolution — Project evolved from an academic exercise to a complete portfolio application, demonstrating refactoring ability, continuous improvement, and evolution of existing code",
     ],
-    live: "",
+    live: "https://mega-sena-suggester.vercel.app",
     repo: "https://github.com/GianlucaAlves/mega-sena-suggester",
     screenshots: ["../../public/megasena-suggester1.png", "../../public/megasena-suggester2.png", "../../public/megasena-suggester3.png", "../../public/megasena-suggester4.png", "../../public/megasena-suggester5.png"],
   },

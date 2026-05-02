@@ -112,7 +112,7 @@ export const projects = [
       "Simulador de Sorteio — Implementei funcionalidade de simulação de sorteio que permite ao usuário conferir seus palpites contra um resultado gerado, reproduzindo a experiência real de conferência de apostas",
       "Evolução Acadêmica para Portfólio — Projeto evoluído a partir de exercício acadêmico para aplicação de portfólio completa, demonstrando capacidade de refatoração, melhoria contínua e evolução de código existente",
     ],
-    live: "",
+    live: "https://mega-sena-suggester.vercel.app",
     repo: "https://github.com/GianlucaAlves/mega-sena-suggester",
     screenshots: ["../../public/megasena-suggester1.png", "../../public/megasena-suggester2.png", "../../public/megasena-suggester3.png", "../../public/megasena-suggester4.png", "../../public/megasena-suggester5.png"],
   },

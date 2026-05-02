@@ -1,6 +1,7 @@
 import BrowserFrame from "./BrowserFrame";
 
 type Project = {
+  type: string;
   title: string;
   description: string;
   stack: string[];
@@ -25,6 +26,9 @@ export default function ProjectCard({ project }: { project: Project }) {
       <div className="flex flex-wrap items-center gap-2 mb-2 w-full">
         <span className="text-green-400 font-mono text-sm sm:text-base font-bold wrap-break-word max-w-full">
           {project.title}
+        </span>
+        <span className="border border-green-500/50 text-green-300 px-2 py-0.5 rounded font-mono text-[10px] sm:text-xs">
+          {project.type}
         </span>
         <span className="ml-auto flex gap-2 flex-wrap">
           <a
