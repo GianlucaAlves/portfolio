@@ -356,11 +356,11 @@ export const commands = (
               </span>
             </div>
             <div className="mb-3">
-              <span className="text-green-400">â–¸ pokemon</span>
+              <span className="text-green-400">▸ pokemon</span>
               <span className="text-green-500/80">
                 {lang === "en"
-                  ? " â€” Gen I text RPG adventure"
-                  : " â€” Aventura RPG textual da Gen I"}
+                  ? " Pokemon Gen I text RPG adventure"
+                  : " Aventura Pokemon RPG textual da Gen I"}
               </span>
             </div>
             <div>
