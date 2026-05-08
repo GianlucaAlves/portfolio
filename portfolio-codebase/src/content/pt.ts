@@ -24,7 +24,7 @@ export const about = {
   location: "Jacareí-SP, Brasil",
   college: "FATEC Jacareí-SP, Desenvolvimento de Software, 2º semestre",
   goal: "Crescer como desenvolvedor Full Stack e contribuir com produtos que geram impacto real.",
-  image: "/profile.png",
+  image: `${import.meta.env.BASE_URL}profile.png`,
 };
 
 export const projects = [
@@ -51,7 +51,7 @@ export const projects = [
     ],
     live: "https://website-institucional-agrirs-lab-in.vercel.app/home.html",
     repo: "https://github.com/GianlucaAlves/Website-Institucional-AgrirsLab-INPE",
-    screenshots: ["/agrirslab1.png", "/agrirslab2.png", "/agrirslab3.png"],
+    screenshots: [`${import.meta.env.BASE_URL}agrirslab1.png`, `${import.meta.env.BASE_URL}agrirslab2.png`, `${import.meta.env.BASE_URL}agrirslab3.png`],
   },
   {
     slug: "portfolio",
@@ -69,7 +69,7 @@ export const projects = [
     ],
     live: "https://portfolio-gamma-peach-gelajuwt1r.vercel.app",
     repo: "https://github.com/GianlucaAlves/portfolio",
-    screenshots: ["/portfolio-home.png", "/portfolio-about.png"],
+    screenshots: [`${import.meta.env.BASE_URL}portfolio-home.png`, `${import.meta.env.BASE_URL}portfolio-about.png`],
   },
   {
     slug: "megasena-conferidor",
@@ -96,7 +96,7 @@ export const projects = [
     ],
     live: "",
     repo: "https://github.com/GianlucaAlves/MegaSena-Conferidor-WebApp",
-    screenshots: ["/megasena-conferidor1.png", "/megasena-conferidor2.png", "/megasena-conferidor3.png", "/megasena-conferidor4.png"],
+    screenshots: [`${import.meta.env.BASE_URL}megasena-conferidor1.png`, `${import.meta.env.BASE_URL}megasena-conferidor2.png`, `${import.meta.env.BASE_URL}megasena-conferidor3.png`, `${import.meta.env.BASE_URL}megasena-conferidor4.png`],
   },
   {
     slug: "mega-palpites",
@@ -114,7 +114,7 @@ export const projects = [
     ],
     live: "https://mega-sena-suggester.vercel.app",
     repo: "https://github.com/GianlucaAlves/mega-sena-suggester",
-    screenshots: ["/megasena-suggester1.png", "/megasena-suggester2.png", "/megasena-suggester3.png", "/megasena-suggester4.png", "/megasena-suggester5.png"],
+    screenshots: [`${import.meta.env.BASE_URL}megasena-suggester1.png`, `${import.meta.env.BASE_URL}megasena-suggester2.png`, `${import.meta.env.BASE_URL}megasena-suggester3.png`, `${import.meta.env.BASE_URL}megasena-suggester4.png`, `${import.meta.env.BASE_URL}megasena-suggester5.png`],
   },
   {
     slug: "medsystem",
@@ -142,7 +142,7 @@ export const projects = [
     ],
     live: "",
     repo: "https://github.com/GianlucaAlves/MedSystem",
-    screenshots: ["/medsystem1.jpg", "/medsystem2.jpg", "/medsystem3.jpg"],
+    screenshots: [`${import.meta.env.BASE_URL}medsystem1.jpg`, `${import.meta.env.BASE_URL}medsystem2.jpg`, `${import.meta.env.BASE_URL}medsystem3.jpg`],
   },
   {
     slug: "plandica",
@@ -168,8 +168,40 @@ export const projects = [
     ],
     live: "",
     repo: "https://github.com/GianlucaAlves/GrowOps",
-    screenshots: ["/plandica1.jpg", "/plandica2.jpg", "/plandica3.jpg", "/plandica4.jpg", "/plandica5.jpg"],
+    screenshots: [`${import.meta.env.BASE_URL}plandica1.jpg`, `${import.meta.env.BASE_URL}plandica2.jpg`, `${import.meta.env.BASE_URL}plandica3.jpg`, `${import.meta.env.BASE_URL}plandica4.jpg`, `${import.meta.env.BASE_URL}plandica5.jpg`],
   },
+  {
+  "slug": "fatecbot",
+  "type": "Projeto Acadêmico",
+  "title": "FatecBot — Autoatendimento da Secretaria Acadêmica",
+  "description": "Aplicação web de autoatendimento da Secretaria Acadêmica da Fatec Jacareí baseada em chatbot conversacional, com árvore de navegação, respostas rastreáveis, encaminhamento de dúvidas e painéis administrativos.",
+  "stack": [
+    "React",
+    "TypeScript",
+    "Vite",
+    "Tailwind CSS",
+    "shadcn/ui",
+    "Node.js",
+    "Express",
+    "Prisma",
+    "PostgreSQL",
+    "Docker",
+    "JWT"
+  ],
+  "highlights": [
+    "Chatbot com árvore de navegação e respostas com evidências — estrutura de nós com resumo, trecho e fonte oficial para garantir rastreabilidade",
+    "Painéis Admin e Secretaria — CRUD de nós, gestão de perguntas e visualização de logs de atendimento por perfil",
+    "RBAC completo com JWT — controle de acesso por papel (ADMIN/SECRETARIA) e proteção de rotas no backend",
+    "Encaminhamento de dúvidas com anexos — envio de perguntas com validação e persistência de arquivos (PDF/JPG/PNG)",
+    "Infra com Docker Compose — três containers (frontend, backend e PostgreSQL) e execução em comando único"
+  ],
+  "live": "",
+  "repo": "https://github.com/GianlucaAlves/ABP---2DSM-2026",
+  "screenshots": [
+    "${import.meta.env.BASE_URL}fatecbot-logo.png",
+    "${import.meta.env.BASE_URL}hero.png"
+  ]
+}
 ];
 
 export const skills = [
